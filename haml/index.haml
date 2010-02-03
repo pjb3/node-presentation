@@ -8,6 +8,6 @@
     %h1= time
   
     %ul
-      :each color in colors
+      :each color in ["red", "green", "blue"]
         %li{ style: "color: "+color }= color
 

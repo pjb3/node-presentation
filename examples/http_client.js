@@ -12,11 +12,11 @@ puts("Getting "+uri+" from "+host+" on port "+port)
    
 var client = http.createClient(port, host)
 client.setTimeout(5000)
-var request = client.request("GET", uri, {"Host": host, "Connection": "close"})
-
 client.addListener("timeout", function() {
   puts("Request timed out")
 })
+
+var request = client.request("GET", uri, {"Host": host, "Connection": "close"})
 
 request.finish(function (response) {
   

@@ -2,9 +2,14 @@ var puts = require('sys').puts,
     posix = require("posix"),
     haml = require("./lib/haml")
 
-posix.cat("index.haml").addCallback(function(template) {
+/* 
+ * The argument template is a String containing the Haml source
+ * A String containing the rendered HTML is printed
+ */
+function printRenderedHTML(template) {
   puts(haml.render(template, {locals: {
-    time: new Date(), 
-    colors: ["red", "green", "blue"]
+    time: new Date()
   }}))
-})
+}
+
+posix.cat("index.haml").addCallback(printRenderedHTML)

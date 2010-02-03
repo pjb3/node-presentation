@@ -4,7 +4,7 @@ exports.room = function(options) {
   if(!options) { options = {} }
   
   this.port = options["port"] || 12345
-  this.timeout = options["timeout"] || (5 * 60 * 1000) //5 minute default
+  this.timeout = options["timeout"] || 0
   this.users = []
   
   this.broadcast = function(message) {
