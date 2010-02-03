@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<foo:page layout="wide" xmlns:foo="http://example.com/foo">
+  <foo:content for="main">
+    <div id="hello">Hello, World!</div>
+  </foo:content>
+</foo:page>

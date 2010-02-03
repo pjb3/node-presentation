@@ -1,0 +1,20 @@
+.rails {
+  font-family: Monaco, monospace;
+  background-color: black; 
+  color: white;
+  margin: 0;
+  padding: 10px;
+  font-weight: normal;
+  font-size: 75%;
+}
+
+.rails .sy0,
+.rails .kw1,
+.rails .kw2,
+.rails .kw3,
+.rails .kw4 { color: #CC7833 }
+.rails .nu0 { color: #A5C261 }
+.rails .st0 { color: #A5C261 }
+.rails .es0 { color: #519F50 }
+
+.rails span.xtra { display:block; }

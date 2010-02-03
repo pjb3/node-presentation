@@ -1,0 +1,47 @@
+Stick this in the presentation somewhere:
+
+node.js is the app server
+
+
+
+Hello, World! example:
+
+<show examples/hello_world.js>
+
+To demonstrate signal handling:
+
+<show examples/hello_goodbye.js>
+
+So what if you want to read a file?  The simplest way is to use cat
+
+<show files/cat.js>
+
+cat actually returns a "promise".  A promise is an EventEmitter which emits one of two events, success or error.  When you addCallback, that's the function that happens on success.  When you addErrback, that's the function that happens on error.
+
+But what if you want to read a large file?  You don't want to load the whole file into memory first.  So we drop down to the more low-level open/read
+
+<show files/read_file.js>
+
+There is a lot of boiler plate here.  If we were programming in Java, you would say that's life, but we're not, so we can get rid of the boiler plate.
+
+<show files/read_file_with_reader.js>
+
+So how did we do this?
+
+<show files/file_reader.js>
+
+Now that makes it easy to re-use the file reader
+
+<show files/byte_count.js>
+<show files/hex_dump.js>
+
+So let's get back into the networking stuff, first the hello world http server
+
+<show examples/hello_world_http_server.js>
+
+And now the client:
+
+node examples/http_client.js http://localhost:8080/
+
+And now the client in a server, a.k.a a proxy
+
