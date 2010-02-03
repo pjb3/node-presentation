@@ -39,10 +39,14 @@ wsServer._onDisconnect = function(connection) {
   if(i >= 0) {
     connections.splice(i, 1)
   }
+  if(connection.nickname) {
+    wsServer.broadcast(connection.nickname+" has left the room")
+  }
 }
 
 wsServer.broadcast = function(msg) {
+  puts('['+ new Date() +'] [info] ' + msg.trim())
   connections.forEach(function(c) {
-    c.send(msg)
+    c.send(msg.trim()+"\n")
   })
 }
