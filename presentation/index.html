@@ -123,6 +123,7 @@
           <li>Execution stacks take up memory</li>
           <li>Synchronization</li>
           <li>Deadlocks</li>
+          <li>Threads managed by app server</li>
         </ul>
       </div>
 
@@ -135,6 +136,42 @@
           <li>Model used in all modern GUI environments</li>
           <li>Model used already by JavaScript in Web Browsers</li>
         </ul>
+      </div>
+
+      <div class="slide">
+        <h1>A is for Asynchronous</h1>
+        <pre><code>
+          $.get('ajax/test.html', function(data) {
+            $('.result').html(data)
+          })
+        </code></pre>
+      </div>
+
+      <div class="slide">
+        <h1>SJAX, a.k.a FAIL-JAX</h1>
+        <pre><code>
+          var data = $.get('sjax/test.html')
+          $('.result').html(data)
+        </code></pre>
+      </div>
+
+      <div class="slide">
+        <h1>Event-Driven Programming</h1>
+        <pre><code>
+          var el = document.getElementById("foo")
+          el.addEventListener("click", doSomething)
+        </code></pre>
+      </div>
+
+      <div class="slide" style="text-align: center">
+        <h1>Advanced Evented Programming</h1>
+        <img src="yehuda.png" width="700" />
+        <br />
+        <a href="http://jquery14.com/day-11">http://jquery14.com/day-11</a>
+      </div>
+
+      <div class="slide">
+        <h1>Code Samples</h1>
       </div>
 
       <div class="slide">
@@ -162,6 +199,10 @@
         <img src="ryan.png" width="700" />
         <br />
         <a href="http://jsconf.eu/2009/video_nodejs_by_ryan_dahl.html">http://jsconf.eu/2009/video_nodejs_by_ryan_dahl.html</a>
+      </div>
+      
+      <div class="slide" style="text-align: center">
+        <h2>The End</h2>
       </div>
       
     </div>

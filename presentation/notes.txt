@@ -1,9 +1,3 @@
-Stick this in the presentation somewhere:
-
-node.js is the app server
-
-
-
 Hello, World! example:
 
 <show examples/hello_world.js>
@@ -44,4 +38,22 @@ And now the client:
 node examples/http_client.js http://localhost:8080/
 
 And now the client in a server, a.k.a a proxy
+
+node examples/google_proxy.js
+
+One of the things node excels at is long connections.
+
+node chat_server/chat_server.js
+
+And WebSocket, the latest hotness
+
+node websocket_chat_server/chat_server.js
+
+Other web examples, Haml:
+
+node haml/generate.js
+
+Picard, a Sinatra-like framework
+
+For data storage, there are already clients for Memcache, Redis, Postgres, Sqlite, MongoDB, CouchDB, Slayer/MySQL
 
