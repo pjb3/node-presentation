@@ -5,7 +5,6 @@ var puts = require('sys').puts,
     http = require('http');
 
 var httpPort = 8080
-var wsPort = 8888
 
 var httpServer = http.createServer(function(req, res) {
   if(req.url == '/chat_client.js') {
@@ -25,14 +24,14 @@ var httpServer = http.createServer(function(req, res) {
 
 puts('HTTP Server running on port '+httpPort)
 
+var wsPort = 8888
 var wsServer = new websocket.Server({port: wsPort})
-
 puts('WS Server running on port '+wsPort)
 
 var connections = []
 wsServer._onConnect = function(connection) {
   connections.push(connection)
-  puts("There are "+connections.length+" clients connected")
+  connection.nickname = null
 }
 
 wsServer._onDisconnect = function(connection) {
@@ -40,5 +39,10 @@ wsServer._onDisconnect = function(connection) {
   if(i >= 0) {
     connections.splice(i, 1)
   }
-  puts("There are "+connections.length+" clients connected")
+}
+
+wsServer.broadcast = function(msg) {
+  connections.forEach(function(c) {
+    c.send(msg)
+  })
 }

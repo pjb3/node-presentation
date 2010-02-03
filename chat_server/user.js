@@ -1,3 +1,5 @@
+var puts = require('sys').puts
+
 // An object that represents a chat room user
 exports.user = function(socket) {
   this.socket = socket
@@ -7,7 +9,11 @@ exports.user = function(socket) {
   }
  
   this.sendMessage = function(message) {
-    this.socket.send(message)
+    try {
+      this.socket.send(message)
+    } catch(e) {
+      puts(e)
+    }
   }
   
 }
