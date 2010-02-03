@@ -8,4 +8,3 @@ posix.cat("index.haml").addCallback(function(template) {
     colors: ["red", "green", "blue"]
   }}))
 })
-
