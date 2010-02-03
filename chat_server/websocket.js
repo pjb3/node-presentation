@@ -43,7 +43,6 @@ var tcp = require('tcp'),
 Server = this.Server = function(options){
   this.options = tools.merge({
     port: 8080,
-    host: 'localhost',
     origins: '*',
     log: true,
     logKey: null,
@@ -55,13 +54,18 @@ Server = this.Server = function(options){
   var self = this;
   this.clients = 0;
   this.server = tcp.createServer(function(socket){
-    new Connection(self, socket);    
+    new Connection(self, socket);
   });
-  this.server.listen(this.options.port, this.options.host);
+  if(this.options.host) {
+    this.server.listen(this.options.port, this.options.host);
+  } else {
+    this.server.listen(this.options.port);
+  }
+    
   
-  if (this.options.log) setInterval(function(){
-    sys.puts('['+ new Date() +'] [info] ' + self.clients + ' clients connected', 'info');
-  }, 5000);
+  // if (this.options.log) setInterval(function(){
+  //   sys.puts('['+ new Date() +'] [info] ' + self.clients + ' clients connected', 'info');
+  // }, 5000);
 };
 
 Server.prototype._verifyOrigin = function(origin){
@@ -162,7 +166,7 @@ Connection.prototype._handshake = function(data){
   
   var self = this, 
       matches = [], 
-      module, 
+      moduleFile, 
       headers = data.split('\r\n');
   
   if (headers.length && headers[0].match(/<policy-file-request.*>/)) {
@@ -191,18 +195,17 @@ Connection.prototype._handshake = function(data){
     this.socket.close();
   }
   
-  module = './modules' + (matches[0] == '/' ? '/_default' : matches[0]).toLowerCase();
+  moduleFile = './modules' + (matches[0] == '/' ? '/_default' : matches[0]).toLowerCase();
   try {
-    var module = require(module);
-    this.module = new module.Module();
+    this.module = require(moduleFile);
   } catch(e){
-    this.log('Handshake aborted. Could not stat module file ' + module + '.js' + ' for resource ' + matches[0]);
+    this.log('Handshake aborted. Could not stat module file ' + moduleFile + '.js' + ' for resource ' + matches[0]);
     this.socket.close();
     return false;
   }
   
   if (!this.module.onData){
-    this.log('Module ' + module + '.js doesn\'t implement an onData method.');
+    this.log('Module ' + moduleFile + '.js doesn\'t implement an onData method.');
     this.socket.close();
     return false;
   }

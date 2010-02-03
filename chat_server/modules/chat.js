@@ -1,6 +1,4 @@
-var Module = this.Module = function(){}
-
-Module.prototype.onData = function(data, connection){
+exports.onData = function(data, connection) {
   if (data == 'start'){
     this.interval = setInterval(function(){
       connection.send(JSON.stringify({time: new Date().toString()}));
@@ -8,6 +6,6 @@ Module.prototype.onData = function(data, connection){
   }  
 }
  
-Module.prototype.onDisconnect = function(connection){
-  clearInterval(this.interval);
+exports.onDisconnect = function(connection) {
+  clearInterval(this.interval)
 }
